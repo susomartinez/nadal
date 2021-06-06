@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ho ho ho</title>
+    <link rel="stylesheet" href="nadal.css">
+</head>
+<body bgcolor="#929292">
+    <div class="adorno"><div id="estrela"></div></div>
+    <div id="arbore">
+        <div id="copa"></div>
+        <div id="tronco"></div>
+    </div>
+
+    <script>
+        //Crear os adornos:
+        var estrelaDiv = document.getElementById("estrela");
+        dragElement(estrelaDiv);
+        var arboreDiv = document.getElementById("arbore");
+        for (var i = 0; i < 7; i++) {
+            var newDiv = document.createElement("div");
+            newDiv.setAttribute("class", "adorno");
+            newDiv.setAttribute("id", "bola");
+            newDiv.style.backgroundColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+            dragElement(newDiv);
+            document.body.insertBefore(newDiv, arboreDiv);
+        }
+
+        function dragElement(elmnt) {
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            elmnt.onmousedown = dragMouseDown;
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // get the mouse cursor position at startup:
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                // call a function whenever the cursor moves:
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // calculate the new cursor position:
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                // set the element's new position:
+                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+            }
+
+            function closeDragElement() {
+                /* stop moving when mouse button is released:*/
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+    </script>
+</body>
+</html>

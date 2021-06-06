@@ -1,0 +1,67 @@
+#arbore {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    height: 700px;
+}
+
+#tronco {
+    width: 100px;
+    height: 100px;
+    background: #6F2507;
+}
+
+#copa {
+    width: 0;
+    height: 0;
+    border-left: 250px solid transparent;
+    border-right: 250px solid transparent;
+    border-bottom: 450px solid #358C0E;
+}
+
+.adorno {
+    position: absolute;
+}
+
+#bola {
+/*    z-index: 9;*/
+    width: 50px;
+    height: 50px;
+    background: red;
+    border-radius: 50%
+}
+
+@keyframes brillo {
+  from {filter: drop-shadow(0 0 20px gold);}
+  to {filter: drop-shadow(0 0 0 gold);}
+}
+
+#estrela {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 100px solid gold;
+    position: relative;
+    animation-name: brillo;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }
+  #estrela:after {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-top: 100px solid gold;
+    position: absolute;
+    content: "";
+    top: 30px;
+    left: -50px;
+    animation-name: brillo;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }
